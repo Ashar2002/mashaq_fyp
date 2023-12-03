@@ -1,0 +1,41 @@
+.banner {
+  background: url(../assets/images/banner.jpg);
+  background-color: bisque;
+}
+.inner_banner {
+  background: url(../assets/images/banner2.jpeg);
+  background-color: bisque;
+}
+.react-chatbot-kit-chat-inner-container {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.react-chatbot-kit-chat-bot-message {
+  font-size: 14px !important;
+}
+.react-chatbot-kit-chat-input {
+  outline: none;
+}
+::-webkit-scrollbar {
+  width: 13px;
+}
+.search::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #553b18;
+  border-radius: 4px;
+}
+.search::-webkit-scrollbar-thumb {
+  background: #553b18;
+  border-radius: 15px;
+}
+.shopBanner{
+  background: url(../assets/images/shopBanner.jpeg);
+}
+.aboutBanner{
+  background: url(../assets/images/aboutBanner.jpeg);
+}
+.contactBanner{
+  background: url(../assets/images/contactBanner.jpeg);
+  background-position: 0px -310px !important;
+}
