@@ -6,13 +6,13 @@ import { useState } from "react";
 import { urlFor } from "@/pages";
 
 const Product = ({ products, mainCategory, subCategory }) => {
-  const filteredCategory = mainCategory?.filter((item) => {
-    return item._id === products[0]?.mainCategory?._ref;
-  });
-  const filteredSubCategory = subCategory.filter((item) => {
-    return item._id === products[0]?.subCategory?._ref;
-  });
-
+  // const filteredCategory = mainCategory?.filter((item) => {
+  //   return item._id === products[0]?.mainCategory?._ref;
+  // });
+  // const filteredSubCategory = subCategory.filter((item) => {
+  //   return item._id === products[0]?.subCategory?._ref;
+  // });
+  console.log(products)
   const [quantity, setQuantity] = useState(0);
   const handleDecrease = () => {
     if (quantity > 0) {
@@ -30,8 +30,8 @@ const Product = ({ products, mainCategory, subCategory }) => {
         <div className="max-w-[600px] mx-auto w-full">
           <Image
             className="p-2 border border-brown-0 w-full rounded-xl"
-            src={shirt1}
-            // src={urlFor(products[0].image).url([])}
+            // src={shirt1}
+            src={`http://localhost:5000/uploads/${products?.images.url}`}
             alt="shirt"
             width={600}
             height={600}
@@ -39,16 +39,16 @@ const Product = ({ products, mainCategory, subCategory }) => {
         </div>
         <div className="max-w-[700px] w-full p-2 rounded-xl">
           <h1 className="py-1 text-base font-bold uppercase text-brown-0">
-            {filteredCategory[0]?.title} ,
-            <span className="pl-3">{filteredSubCategory[0]?.title}</span>
+            {products?.name} ,
+            <span className="pl-3">{products?.name}</span>
           </h1>
           <h1 className="py-4 text-4xl font-bold capitalize">
             {" "}
-            {products[0]?.title}
+            {products?.name}
           </h1>
-          <p className="py-2">{products[0]?.description}</p>
+          <p className="py-2">{products?.description}</p>
 
-          <p className="text-2xl py-2 font-bold">Rs. {products[0]?.price} /-</p>
+          <p className="text-2xl py-2 font-bold">Rs. {products?.price} /-</p>
 
           <div className="flex items-center flex-wrap justify-left gap-5">
             <div className="quantity-container py-1 w-full bg-bisque-0 rounded-lg flex items-center justify-between px-6 lg:px-3 font-bold sm:mr-3 lg:mr-5 max-w-[200px]">

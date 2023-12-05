@@ -13,7 +13,6 @@ const categories = () => {
       <Sidebar />
       <div className="mt-4">
         <InnerBanner />
-
         <Footer />
       </div>
     </>

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import DashboardNav from "@/components/DashboardNav"
+import DashboardNav from "@/components/DashboardNav";
 const product = () => {
   const dummyProductList = [
     {
@@ -46,23 +46,38 @@ const product = () => {
         <DashboardNav />
         <h1 className="text-center text-6xl font-bold">Products List</h1>
         <div className="space-y-2 mt-20">
-          {
-            dummyProductList?.map((data,index) => {
-              return(
-                <div
+          {dummyProductList?.map((data, index) => {
+            return (
+              <div
                 key={index}
-                className="flex justify-between gap-2 items-stretch border border-lightbrown-0 rounded-md p-2">
-                  <Image className="w-10 h-10 object-contain" width={50} height={50} alt="listImg" src={data?.image}/>
-                  <p className="font-medium max-w-[150px] w-full text-lg">{data?.name}</p>
-                  {/* <p className="font-medium max-w-[150px] w-full text-lg">{data?.desc}</p> */}
-                  <p className="font-medium max-w-[150px] w-full text-lg">{data?.category}</p>
-                  <p className="font-medium max-w-[150px] w-full text-lg">{data?.subcategory}</p>
-                  <p className="font-medium max-w-[150px] w-full text-lg">{data?.type}</p>
-                  <p className="font-medium max-w-[150px] w-full text-lg">{data?.price}</p>
-                </div>
-              );
-            })
-          }
+                className="flex justify-between gap-2 items-stretch border border-lightbrown-0 rounded-md p-2"
+              >
+                <Image
+                  className="w-10 h-10 object-contain"
+                  width={50}
+                  height={50}
+                  alt="listImg"
+                  src={data?.image}
+                />
+                <p className="font-medium max-w-[150px] w-full text-lg">
+                  {data?.name}
+                </p>
+                {/* <p className="font-medium max-w-[150px] w-full text-lg">{data?.desc}</p> */}
+                <p className="font-medium max-w-[150px] w-full text-lg">
+                  {data?.category}
+                </p>
+                <p className="font-medium max-w-[150px] w-full text-lg">
+                  {data?.subcategory}
+                </p>
+                <p className="font-medium max-w-[150px] w-full text-lg">
+                  {data?.type}
+                </p>
+                <p className="font-medium max-w-[150px] w-full text-lg">
+                  {data?.price}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </>

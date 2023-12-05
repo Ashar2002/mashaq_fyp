@@ -25,18 +25,26 @@ const productAdd = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault();
-    // Display form data in the console
+
     const formData = new FormData();
-    formData.append("photo", formState.productImage);
-    console.log(formState);
+    formData.append("photo", formState.photo); // Corrected line
+    formData.append("name", formState.name);
+    formData.append("description", formState.description);
+    formData.append("price", formState.price);
+    formData.append("category", formState.category);
+    formData.append("subCategory", formState.subCategory);
+    formData.append("type", formState.type);
+
     try {
-      const res = await axios.post("http://localhost:5000/product/add",formState)
-      console.log(res)
+      const res = await axios.post(
+        "http://localhost:5000/product/add",
+        formData
+      );
+      console.log(res);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
     <div className="container mx-auto h-screen grid place-items-center my-16">
       <div className="rounded-lg bg-white p-8 shadow-lg shadow-bisque-0 lg:col-span-3 lg:p-12">
