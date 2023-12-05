@@ -27,7 +27,6 @@ const shop = () => {
         Our Products
       </h1>
       <ProductList products={products}  />
-      {/* <ProductList products={products} /> */}
       <Footer />
     </div>
   );

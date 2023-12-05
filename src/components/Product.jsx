@@ -1,6 +1,6 @@
 import { shirt1 } from "@/assets";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { useState } from "react";
 import { urlFor } from "@/pages";
@@ -14,6 +14,8 @@ const Product = ({ products, mainCategory, subCategory }) => {
   // });
   console.log(products)
   const [quantity, setQuantity] = useState(0);
+  const [imageUrl, setImageUrl] = useState("/placeholder-image.jpg");
+
   const handleDecrease = () => {
     if (quantity > 0) {
       setQuantity(quantity - 1);
@@ -23,6 +25,11 @@ const Product = ({ products, mainCategory, subCategory }) => {
   const handleIncrease = () => {
     setQuantity(quantity + 1);
   };
+  useEffect(() => {
+    if (products?.images && products.images.length > 0) {
+      setImageUrl(products.images[0].url);
+    }
+  }, [products]);
 
   return (
     <>
@@ -31,7 +38,8 @@ const Product = ({ products, mainCategory, subCategory }) => {
           <Image
             className="p-2 border border-brown-0 w-full rounded-xl"
             // src={shirt1}
-            src={`http://localhost:5000/uploads/${products?.images.url}`}
+            // src={products?.images[0]?.url}
+            src={imageUrl}
             alt="shirt"
             width={600}
             height={600}

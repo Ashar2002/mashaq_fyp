@@ -5,8 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 const ProductList = ({ products }) => {
-  console.log(products)
-  // console.log("url",products.images?.url)
+  console.log("url shop", products);
   return (
     <>
       <div className="container mx-auto">
@@ -17,13 +16,13 @@ const ProductList = ({ products }) => {
           <div className="grid place-items-center h-full place-content-center w-full 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-16 justify-between items-start gap-x-3 gap-y-5">
             {products?.map((item, index) => (
               <Link
-              key={index}
+                key={index}
                 href={`/product/${item._id}`}
                 className="max-w-[280px] w-full flex flex-col items-center border border-brown-0 rounded-lg group"
               >
                 <div className="overflow-hidden w-full h-[300px] bg-bisque-0 rounded-t-lg">
                   <Image
-                    src={`http://localhost:5000/uploads/${item?.images[0].url}`}
+                    src={item?.images[0].url}
                     alt="shirt1"
                     width={300}
                     className="h-[300px] object-cover w-full max-w-[300px] rounded-t-lg group-hover:scale-125 delay-200 transition-all ease-in-out "
