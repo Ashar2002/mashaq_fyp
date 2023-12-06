@@ -44,6 +44,7 @@ const productAdd = () => {
     } catch (error) {
       console.log(error);
     }
+    console.log(formData)
   };
   return (
     <div className="container mx-auto h-screen grid place-items-center my-16">
@@ -127,10 +128,10 @@ const productAdd = () => {
                   select sub-category
                 </option>
 
-                <option value="top wear">top wear</option>
-                <option value="bottom wear">bottom wear</option>
-                <option value="foot wear">foot wear</option>
-                <option value="bags">bag</option>
+                <option value="topwear">top wear</option>
+                <option value="bottomwear">bottom wear</option>
+                <option value="footwear">foot wear</option>
+                <option value="bag">bag</option>
               </select>
             </div>
             <div className="w-full border border-lightbrown-0 rounded-lg p-2">
