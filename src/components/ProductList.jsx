@@ -22,7 +22,7 @@ const ProductList = ({ products }) => {
               >
                 <div className="overflow-hidden w-full h-[300px] bg-bisque-0 rounded-t-lg">
                   <Image
-                    src={item?.images[0].url}
+                    src={item?.images && item.images.length > 0 ? item.images[0].url : shirt1}
                     alt="shirt1"
                     width={300}
                     className="h-[300px] object-cover w-full max-w-[300px] rounded-t-lg group-hover:scale-125 delay-200 transition-all ease-in-out "
