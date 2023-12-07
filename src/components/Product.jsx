@@ -6,13 +6,7 @@ import { useState } from "react";
 import { urlFor } from "@/pages";
 
 const Product = ({ products, mainCategory, subCategory }) => {
-  // const filteredCategory = mainCategory?.filter((item) => {
-  //   return item._id === products[0]?.mainCategory?._ref;
-  // });
-  // const filteredSubCategory = subCategory.filter((item) => {
-  //   return item._id === products[0]?.subCategory?._ref;
-  // });
-  console.log(products)
+  console.log(products);
   const [quantity, setQuantity] = useState(0);
   const [imageUrl, setImageUrl] = useState("/placeholder-image.jpg");
 

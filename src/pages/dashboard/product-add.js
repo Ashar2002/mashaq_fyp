@@ -41,10 +41,17 @@ const productAdd = () => {
         formData
       );
       console.log(res);
+      if (res.status === 201) {
+        // Product added successfully
+        window.alert("Product added successfully!");
+      } else {
+        // Handle other response statuses if needed
+        console.log(res);
+      }
     } catch (error) {
       console.log(error);
     }
-    console.log(formData)
+    console.log(formData);
   };
   return (
     <div className="container mx-auto h-screen grid place-items-center my-16">
