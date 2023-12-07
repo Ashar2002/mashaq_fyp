@@ -47,8 +47,8 @@ const Product = ({ products, mainCategory, subCategory }) => {
         </div>
         <div className="max-w-[700px] w-full p-2 rounded-xl">
           <h1 className="py-1 text-base font-bold uppercase text-brown-0">
-            {products?.name} ,
-            <span className="pl-3">{products?.name}</span>
+            {products?.category} ,
+            <span className="pl-3">{products?.subCategory}</span>
           </h1>
           <h1 className="py-4 text-4xl font-bold capitalize">
             {" "}
