@@ -7,6 +7,18 @@ import { imageUrlBuilder } from "@sanity/image-url";
 import React from "react";
 
 const topwear = () => {
+  const [product, setProducts] = useState(null);
+  const getData = async ()=>{
+    try {
+      const res = await axios.get("http://localhost:5000/product/browse/category?category=men&&subCategory=topwear");
+      setProducts(res?.data?.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  useEffect(()=>{
+    getData();
+  },[])
 
   return (
     <div>
