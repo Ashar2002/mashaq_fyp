@@ -4,7 +4,8 @@ import ProductList from "@/components/ProductList";
 import Sidebar from "@/components/SideBar";
 import { createClient } from "@sanity/client";
 import { imageUrlBuilder } from "@sanity/image-url";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const footwear = () => {
   const [product, setProducts] = useState(null);
