@@ -4,7 +4,8 @@ import ProductList from "@/components/ProductList";
 import Sidebar from "@/components/SideBar";
 import { createClient } from "@sanity/client";
 import { imageUrlBuilder } from "@sanity/image-url";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const topwear = () => {
   const [product, setProducts] = useState(null);
@@ -24,7 +25,7 @@ const topwear = () => {
     <div>
       <Sidebar bg="bg-bisque-0" />
       <InnerBanner inner_banner="shopBanner" onPage="Top Wear" />
-      <ProductList title="Top Wear Products"  />
+      <ProductList title="Top Wear Products" products={product} />
       <Footer />
     </div>
   );
