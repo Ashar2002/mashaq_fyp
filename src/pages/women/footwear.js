@@ -12,7 +12,7 @@ const footwear = () => {
   const getData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/product/browse/category?category=women&&subCategory=footwear"
+        "http://localhost:5000/product/browse/women/footwear"
       );
       setProducts(res?.data?.data);
     } catch (error) {

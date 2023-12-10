@@ -12,13 +12,15 @@ const footwear = () => {
   const getData = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/product/browse/category?category=men&&subCategory=footwear"
+        "http://localhost:5000/product/browse/men/footwear"
       );
       setProducts(res?.data?.data);
+      console.log(res?.data?.data)
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(product)
   useEffect(() => {
     getData();
   }, []);
@@ -27,7 +29,7 @@ const footwear = () => {
     <div>
       <Sidebar bg="bg-bisque-0" />
       <InnerBanner inner_banner="shopBanner" onPage="Foot Wear" />
-      <ProductList title="Foot Wear Products" />
+      <ProductList title="Foot Wear Products" products={product} />
       {/* <ProductList title="Foot Wear Products" products={filteredProduct} /> */}
       <Footer />
     </div>

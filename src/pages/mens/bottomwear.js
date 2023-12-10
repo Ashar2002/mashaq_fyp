@@ -9,7 +9,7 @@ const bottomwear = () => {
   const [product, setProducts] = useState(null);
   const getData = async ()=>{
     try {
-      const res = await axios.get("http://localhost:5000/product/browse/category?category=men&&subCategory=bottomwear");
+      const res = await axios.get("http://localhost:5000/product/browse/men/bottomwear");
       setProducts(res?.data?.data)
     } catch (error) {
       console.log(error)

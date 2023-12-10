@@ -9,7 +9,7 @@ const index = () => {
   const [product, setProducts] = useState(null);
   const getData = async ()=>{
     try {
-      const res = await axios.get("http://localhost:5000/product/browse/category?category=men");
+      const res = await axios.get("http://localhost:5000/product/browse/men");
       setProducts(res?.data?.data)
     } catch (error) {
       console.log(error)
