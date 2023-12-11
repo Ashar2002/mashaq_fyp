@@ -2,24 +2,19 @@ import React from "react";
 
 const MessageParser = ({ children, actions }) => {
   const parse = (message) => {
-    // Trim leading and trailing whitespace
-    const trimmedMessage = message.trim();
+    const trimmedMessage = message.trim().toLowerCase();
 
-    // Check if the trimmed message is empty
-    if (!trimmedMessage) {
-      return; // Do nothing if the message is empty
-    }
-
-    if (trimmedMessage.includes("hello")) {
-      actions.handleHello();
-    } else if (trimmedMessage.includes("hi")) {
-      actions.handleHello();
-    } else if (trimmedMessage.includes("yo")) {
-      actions.handleHello();
-    } else if (trimmedMessage.includes("what ")) {
-      actions.handleHello();
+    if (trimmedMessage.includes("track order")) {
+      actions.redirectToOrderTracking();
+    } else if (trimmedMessage.includes("payment method")) {
+      actions.redirectToPaymentMethods();
+    } else if (trimmedMessage.includes("international shipping")) {
+      actions.redirectToInternationalShipping();
+    } else if (trimmedMessage.includes("return an item")) {
+      actions.redirectToReturnsInfo();
     } else {
-      actions.handleHello();
+      // Handle other cases or provide a default response
+      actions.handleDefault();
     }
   };
 

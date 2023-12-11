@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 const ProductList = ({ products }) => {
-  console.log("url shop", products);
+  // console.log("url shop", products);
   return (
     <>
       <div className="container mx-auto">
@@ -40,8 +40,7 @@ const ProductList = ({ products }) => {
           </div>
         ) : (
           <p className="my-16 text-red-500 text-xl capitalize text-center select-none">
-            no products uploaded for this category yet. please check back later.
-            thanks for your patience.
+            no products for this available.
           </p>
         )}
       </div>

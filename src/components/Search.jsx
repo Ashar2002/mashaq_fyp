@@ -1,27 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import { urlFor } from "@/pages";
 import Link from "next/link";
+import axios from "axios";
 import { shirt2 } from "@/assets";
 
-const Search = ({ products }) => {
+const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const searchRef = useRef(null);
 
   // Function to handle input change
-  const handleInputChange = (e) => {
+  const handleInputChange = async (e) => {
     const inputValue = e.target.value;
     setSearchTerm(inputValue);
 
-    // Filter the data based on the input value
-    const filteredResults = products.filter((item) =>
-      item.title.toLowerCase().includes(inputValue.toLowerCase())
-    );
-
-    setResults(filteredResults);
+    // Fetch data from the API based on the input value
+    try {
+      const res = await axios.get("http://localhost:5000/product/get");
+      setResults(res?.data?.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
+  // console.log("results",results)
   // Function to clear the input and results
   const clearInput = () => {
     setSearchTerm("");
@@ -85,17 +86,16 @@ const Search = ({ products }) => {
                 href={`/product/${item._id}`}
                 className="w-full flex items-center space-x-2 border border-red-500 gap-2 mb-2"
               >
-                <div className="w-full max-w-[120px] bg-bisque-0 text-center">
+                <div className="w-full max-w-[120px] bg-bisque-0 text-center h-[120px] p-1">
                   <Image
-                    src={shirt2}
-                    // src={urlFor(item.image).url()}
-                    alt={item.title}
+                    src={item?.images[0].url}
+                    alt={item.name}
                     width={100}
                     height={100}
-                    className="object-cover mx-auto py-2 rounded-full"
+                    className="object-cover mx-auto py-2 h-full"
                   />
                 </div>
-                <p>{item.title}</p>
+                <p>{item.name}</p>
               </Link>
             ))}
           </div>
