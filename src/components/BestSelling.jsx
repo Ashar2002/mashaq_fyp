@@ -30,7 +30,7 @@ const BestSelling = () => {
 
     getData();
   }, []);
-  // console.log("best selling",products)
+  console.log("best selling",products)
   return (
     <div className="container mx-auto py-16">
       <h1 className="text-4xl text-brown-0 font-bold text-center">

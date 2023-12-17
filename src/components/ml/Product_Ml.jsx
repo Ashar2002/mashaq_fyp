@@ -11,18 +11,15 @@ const Product_Ml = ({ products }) => {
       {products && products.length > 0 ? (
         <div className="grid place-items-center h-full place-content-center w-full 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 py-16 justify-between items-start gap-x-3 gap-y-5">
           {products?.map((item, index) => (
-            <Link
+            <a
+            target="_blank"
               key={index}
-              href={`/product/${item._id}`}
+              href={item.url}
               className="max-w-[280px] w-full flex flex-col items-center border border-brown-0 rounded-lg group"
             >
               <div className="overflow-hidden w-full h-[300px] bg-bisque-0 rounded-t-lg">
-                <Image
-                  src={
-                    item?.images && item.images.length > 0
-                      ? item.images[0].url
-                      : shirt1
-                  }
+                <img
+                  src={item.image_path}
                   alt="shirt1"
                   width={300}
                   className="h-[300px] object-cover w-full max-w-[300px] rounded-t-lg group-hover:scale-125 delay-200 transition-all ease-in-out "
@@ -31,11 +28,11 @@ const Product_Ml = ({ products }) => {
               </div>
               <div className="bg-bisque-0 w-full p-2 rounded-lg rounded-t-none">
                 <p className="text-brown-0 text-lg min-h-[60px]">
-                  {item?.name}
+                  {item?.description}
                 </p>
                 <p className="text-black font-bold">Rs. {item?.price}.00</p>
               </div>
-            </Link>
+            </a>
           ))}
         </div>
       ) : (

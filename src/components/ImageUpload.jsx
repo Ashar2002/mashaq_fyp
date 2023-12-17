@@ -2,89 +2,51 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ProductList from "./ProductList";
 import { MutatingDots } from "react-loader-spinner";
-import { shuffle } from 'lodash';
+import { shuffle } from "lodash";
+import Product_Ml from "./ml/Product_Ml";
 
 const ImageUpload = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [loading, setLoading] = useState(false); // Add loading state
-
-  const handleImageUpload = (event) => {
+  const [tw, setTw] = useState([]);
+  const [bw, setBw] = useState([]);
+  const [fw, setFw] = useState([]);
+  const [bags, setBags] = useState([]);
+  const handleImageUpload = async (event) => {
     const file = event.target.files[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setUploadedImage(e.target.result);
-      };
-      reader.readAsDataURL(file);
+      var formData = new FormData();
+      formData.append("file", file);
+      console.log("Uploading....");
+      setUploadedImage(URL.createObjectURL(file));
+      setLoading(true); // Set loading to true
+      const res = await axios.post("http://localhost:5000/ml/model", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      console.log(res?.data.topwear.category)
+      setLoading(false); // Set loading to true
+      setTw(res.data.topwear?.slice(0, 5) ?? []);
+      setBw(res.data.bottomwear?.slice(0, 5) ?? []);
+      setFw(res.data.footwear?.slice(0, 5) ?? []);
+      console.log("image response=============>", res.data);
     }
-    setLoading(true); // Set loading to true
+    // const url = "http://localhost:3000/product/6572305b4e18b39eda5d6c29";
+    // const parts = url.split("/");
+    // const lastPart = parts[parts.length - 1];
+    // console.log(lastPart);
 
-    getData();
-  };
-  const [bw, setbw] = useState([]);
-  const [fw, setfw] = useState([]);
-  const [tw, settw] = useState([]);
-  const [bags, setbag] = useState([]);
-
-  const getData = async () => {
-    try {
-      const res1 = await axios.get(
-        "http://localhost:5000/product/browse/women/topwear"
-      );
-      const res2 = await axios.get(
-        "http://localhost:5000/product/browse/women/bottomwear"
-      );
-      const res3 = await axios.get(
-        "http://localhost:5000/product/browse/women/footwear"
-      );
-      const res4 = await axios.get(
-        "http://localhost:5000/product/browse/women/bag"
-      );
-  
-      // Get all products without limiting to 5
-      const a = res1?.data?.data;
-      const b = res2?.data?.data;
-      const c = res3?.data?.data;
-      const d = res4?.data?.data;
-  
-      // Shuffle the products
-      const shuffledTw = shuffle(a);
-      const shuffledBw = shuffle(b);
-      const shuffledFw = shuffle(c);
-      const shuffledBags = shuffle(d);
-  
-      // Get only the first 5 products
-      const firstFiveTw = shuffledTw.slice(0, 5);
-      const firstFiveBw = shuffledBw.slice(0, 5);
-      const firstFiveFw = shuffledFw.slice(0, 5);
-      const firstFiveBags = shuffledBags.slice(0, 5);
-  
-      // setProducts(firstFiveProducts);
-      setTimeout(() => {
-        settw(firstFiveTw);
-      }, Math.round(Math.random() * 5) * 1200);
-      setTimeout(() => {
-        setbw(firstFiveBw);
-      }, Math.round(Math.random() * 5) * 1200);
-      setTimeout(() => {
-        setbag(firstFiveBags);
-      }, Math.round(Math.random() * 5) * 1200);
-      setTimeout(() => {
-        setfw(firstFiveFw);
-        setLoading(false); // Set loading to false when data is loaded
-      }, Math.round(Math.random() * 5) * 400);
-    } catch (error) {
-      console.log(error);
-      setLoading(false); // Set loading to false on error
-    }
-  };
-  
-  useEffect(() => {
     // getData();
-  }, []);
+  };
 
-  console.log("bags", bags);
+  useEffect(() => {
+    console.log(tw, "topwear");
+    console.log(bw, "bottomwear");
+    console.log(fw, "footwear");
+  });
+
   return (
     <div className="container mx-auto mb-10">
       <div className="max-w-[900px] mx-auto mt-7 px-4">
@@ -110,8 +72,8 @@ const ImageUpload = () => {
                 />
               </svg>
               <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                <span className="font-semibold">Click to upload</span> or drag and
-                drop
+                <span className="font-semibold">Click to upload</span> or drag
+                and drop
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">
                 SVG, PNG, JPG or GIF (MAX. 800x400px)
@@ -130,7 +92,7 @@ const ImageUpload = () => {
             <img
               src={uploadedImage}
               alt="uploaded shirt"
-              className="mx-auto w-full object-cover p-3 pt-0 h-[400px]"
+              className="mx-auto w-full object-contain p-3 pt-0 h-[400px]"
             />
           ) : null}
         </div>
@@ -154,7 +116,8 @@ const ImageUpload = () => {
               visible={true}
             />
           ) : (
-            <ProductList products={tw} />
+            // <p>nothing yet</p>
+            <Product_Ml products={tw} />
           )}
         </div>
       </div>
@@ -177,7 +140,10 @@ const ImageUpload = () => {
               visible={true}
             />
           ) : (
-            <ProductList products={bw} />
+            
+            <Product_Ml products={bw} />
+
+            // <ProductList products={bw} />
           )}
         </div>
       </div>
@@ -200,7 +166,9 @@ const ImageUpload = () => {
               visible={true}
             />
           ) : (
-            <ProductList products={fw} />
+            <Product_Ml products={fw} />
+
+            // <ProductList products={fw} />
           )}
         </div>
       </div>
